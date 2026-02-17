@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新井鯖のメンバー</title>
+    <style>
+        :root {
+            --color-bg-primary: #0f172a;
+            --color-bg-secondary: #1e293b;
+            --color-bg-tertiary: #334155;
+            --color-text-primary: #f1f5f9;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-accent: #38bdf8;
+            --color-border: #475569;
+            --color-success: #22c55e;
+            --color-warning: #eab308;
+            --color-danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent);
+        }
+
+        .subtitle {
+            color: var(--color-text-muted);
+            font-size: 1rem;
+        }
+
+        .search-box {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.75rem 1rem;
+            background-color: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: 2px solid var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--color-bg-tertiary);
+            border-color: var(--color-accent);
+        }
+
+        .filter-btn.active {
+            background-color: var(--color-accent);
+            color: var(--color-bg-primary);
+            border-color: var(--color-accent);
+        }
+
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .country-card {
+            background-color: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .country-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+        }
+
+        .country-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .country-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            flex: 1;
+        }
+
+        .country-tag {
+            font-family: 'Courier New', monospace;
+            background-color: var(--color-bg-tertiary);
+            color: var(--color-accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .country-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .country-type.peace {
+            background-color: rgba(34, 197, 94, 0.15);
+            color: var(--color-success);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .country-type.war {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: var(--color-danger);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .country-type.star {
+            background-color: rgba(234, 179, 8, 0.15);
+            color: var(--color-warning);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+
+        .members-list {
+            margin-top: 1rem;
+        }
+
+        .member-item {
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--color-bg-primary);
+            border-radius: 6px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .member-item:hover {
+            border-color: var(--color-accent);
+            background-color: rgba(56, 189, 248, 0.05);
+        }
+
+        .member-role {
+            font-size: 0.75rem;
+            color: var(--color-accent);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .member-name {
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 0.125rem;
+        }
+
+        .member-username {
+            font-family: 'Courier New', monospace;
+            color: var(--color-text-muted);
+            font-size: 0.75rem;
+        }
+
+        .member-item {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .member-item:active {
+            transform: scale(0.98);
+        }
+
+        .copy-feedback {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--color-success);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease-out;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: var(--color-bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--color-text-muted);
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .countries-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>新井鯖🌍</h1>
+            <p class="subtitle">各国の国民とMinecraftネームタグを確認</p>
+        </header>
+
+        <div class="stats" id="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="totalCountries">0</div>
+                <div class="stat-label">国家数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="totalMembers">0</div>
+                <div class="stat-label">総人口</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="peaceCountries">0</div>
+                <div class="stat-label">平和国</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="warCountries">0</div>
+                <div class="stat-label">戦争国</div>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="国名、プレイヤー名、ユーザーネームで検索...">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">すべて</button>
+                <button class="filter-btn" data-filter="peace">平和国</button>
+                <button class="filter-btn" data-filter="war">戦争国</button>
+                <button class="filter-btn" data-filter="star">Star</button>
+            </div>
+        </div>
+
+        <div class="countries-grid" id="countriesGrid"></div>
+
+        <footer>
+            <p>&copy; 2026 arai server. All rights reserved.</p>
+            <p>無断転載・二次配布を禁じます。</p>
+        </footer>
+    </div>
+
+    <script>
+        const countriesData = [
+            {
+                name: "ゲルン=アラクイア中枢帝国",
+                tag: "ct:GERUA",
+                type: "star",
+                members: [
+                    { role: "建国者", name: "あらくま", username: "AR Bear6790" },
+                    { role: "国民", name: "tiuね", username: "TTTiune" },
+                    { role: "国民", name: "斜陽", username: "Syayo3478" },
+                    { role: "国民", name: "たまてん", username: "tamaten4248" },
+                    { role: "国民", name: "ズールー人", username: "istanb23455" },
+                    { role: "国民", name: "さお", username: "sieru2233" }
+                ]
+            },
+            {
+                name: "ちっぽけ島",
+                tag: "ct:CHIP",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "にも", username: "Nimofish0123" }
+                ]
+            },
+            {
+                name: "ユニヴェール",
+                tag: "ct:UNIV",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "復星", username: "doordaia" }
+                ]
+            },
+            {
+                name: "科学都市ミライティア",
+                tag: "ct:GAND",
+                type: "war",
+                members: [
+                    { role: "建国者", name: "アルマ", username: "Irukkun046" },
+                    { role: "国民", name: "はまぐり", username: "KENTY0924" },
+                    { role: "国民", name: "米", username: "sptkg43" },
+                    { role: "国民", name: "レジ", username: "Aakarin2275532" },
+                    { role: "国民", name: "炊き込みご飯", username: "DrollDoor051058" },
+                    { role: "国民", name: "ZERO", username: "ZERO10165" },
+                    { role: "国民", name: "神崎衣織", username: "kanzaki471072" },
+                    { role: "国民", name: "@", username: "Orufe8042" }
+                ]
+            },
+            {
+                name: "ゲルンフロリア貿易商国",
+                tag: "ct:GERUN",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "ヒルドルブ・アトラ", username: "RyuukiRate86" },
+                    { role: "国民", name: "UAMIFerdinand-Julius", username: "UAMI0112" },
+                    { role: "国民", name: "Kh371[motimoti]", username: "Kh3716536" },
+                    { role: "国民", name: "sini_hibiki", username: "Hibiki1169kj" },
+                    { role: "国民", name: "ぷちねこ", username: "DisloyalSquid93" }
+                ]
+            },
+            {
+                name: "ミニッツメン カリフォルニア共和国",
+                tag: "ct:MINUP",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "新カリフォルニア共和国", username: "NullMitten50502" }
+                ]
+            },
+            {
+                name: "ift",
+                tag: "ct:IFTW",
+                type: "war",
+                members: [
+                    { role: "建国者", name: "りんね", username: "rinnedao" },
+                    { role: "国民", name: "おりーぶ", username: "olivesleet70756" },
+                    { role: "国民", name: "睡眠薬", username: "MacchYuki" },
+                    { role: "国民", name: "SorryBerry08", username: "SorryBerry08" }
+                ]
+            },
+            {
+                name: "ソ連",
+                tag: "ct:SOVUN",
+                type: "war",
+                members: [
+                    { role: "建国者", name: "わろた", username: "wammy3092" },
+                    { role: "国民", name: "もち", username: "mochisuki4649" },
+                    { role: "国民", name: "ジュノべーゼ", username: "kouki2291" },
+                    { role: "国民", name: "freedom", username: "Inane psycho433" },
+                    { role: "国民", name: "はまぁ", username: "hama8945" },
+                    { role: "国民", name: "しいな", username: "AI35565896" },
+                    { role: "国民", name: "ましゅまろ", username: "shuza1416" }
+                ]
+            },
+            {
+                name: "神聖オーストリア海上帝国",
+                tag: "ct:AUST",
+                type: "war",
+                members: [
+                    { role: "建国者", name: "ティナ", username: "TNalpha0218" },
+                    { role: "建国者", name: "かぼす", username: "BalenG9" },
+                    { role: "国民", name: "隠座", username: "mopuin1227g" },
+                    { role: "国民", name: "んっ", username: "ZeroPeak9593" }
+                ]
+            },
+            {
+                name: "桜猫国",
+                tag: "ct:SAKURA",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "まちゃぴの", username: "MatyaPino" },
+                    { role: "国民", name: "からーぽ", username: "k4rapp0dayo" },
+                    { role: "国民", name: "finn", username: "Finnnodesidayo" },
+                    { role: "国民", name: "たこし君", username: "TAkoshi8527" }
+                ]
+            },
+            {
+                name: "ア・リエール二重王国",
+                tag: "ct:ALIER",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "ガマロ", username: "Gamaro7319" }
+                ]
+            },
+            {
+                name: "無法都市",
+                tag: "ct:NOURI",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "孤火", username: "unebi1000Ka" }
+                ]
+            },
+            {
+                name: "いぬのすみか",
+                tag: "ct:INUNO",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "しばどっぐ", username: "Shibadog0901" }
+                ]
+            },
+            {
+                name: "アニマル王国",
+                tag: "ct:ANIMA",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "犬", username: "Omu6502" }
+                ]
+            },
+            {
+                name: "あいしてす",
+                tag: "ct:AISHI",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "メイジ", username: "Makizusi1416" }
+                ]
+            },
+            {
+                name: "EVER GREEN FAMILY",
+                tag: "ct:EGFP",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "らぁめん", username: "Fried rice4986" },
+                    { role: "国民", name: "エル", username: "godJK36" },
+                    { role: "国民", name: "AGEさん", username: "raikou raito" }
+                ]
+            },
+            {
+                name: "ウェスタ第二公国",
+                tag: "ct:WESTA",
+                type: "peace",
+                members: [
+                    { role: "建国者", name: "まるすけ", username: "marusuke228" },
+                    { role: "国民", name: "Tにゃん", username: "T6neko" }
+                ]
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        function updateStats() {
+            const totalCountries = countriesData.length;
+            const totalMembers = countriesData.reduce((sum, country) => sum + country.members.length, 0);
+            const peaceCountries = countriesData.filter(c => c.type === 'peace').length;
+            const warCountries = countriesData.filter(c => c.type === 'war').length;
+
+            document.getElementById('totalCountries').textContent = totalCountries;
+            document.getElementById('totalMembers').textContent = totalMembers;
+            document.getElementById('peaceCountries').textContent = peaceCountries;
+            document.getElementById('warCountries').textContent = warCountries;
+        }
+
+        function renderCountries(filter = 'all', searchTerm = '') {
+            const grid = document.getElementById('countriesGrid');
+            grid.innerHTML = '';
+
+            let filteredCountries = countriesData;
+
+            if (filter !== 'all') {
+                filteredCountries = countriesData.filter(country => country.type === filter);
+            }
+
+            if (searchTerm) {
+                const term = searchTerm.toLowerCase();
+                filteredCountries = filteredCountries.filter(country => {
+                    const nameMatch = country.name.toLowerCase().includes(term);
+                    const tagMatch = country.tag.toLowerCase().includes(term);
+                    const memberMatch = country.members.some(member => 
+                        member.name.toLowerCase().includes(term) || 
+                        member.username.toLowerCase().includes(term)
+                    );
+                    return nameMatch || tagMatch || memberMatch;
+                });
+            }
+
+            if (filteredCountries.length === 0) {
+                grid.innerHTML = '<div class="no-results">検索結果が見つかりませんでした</div>';
+                return;
+            }
+
+            filteredCountries.forEach(country => {
+                const card = document.createElement('div');
+                card.className = 'country-card';
+
+                const typeLabel = country.type === 'peace' ? '平和国' : 
+                                 country.type === 'war' ? '戦争国' : 'Star';
+
+                const membersHTML = country.members.map(member => `
+                    <div class="member-item" onclick="copyToClipboard('${member.username}')">
+                        <div class="member-role">${member.role}</div>
+                        <div class="member-name">${member.name}</div>
+                        <div class="member-username">${member.username}</div>
+                    </div>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="country-header">
+                        <div>
+                            <div class="country-name">${country.name}</div>
+                            <span class="country-type ${country.type}">${typeLabel}</span>
+                        </div>
+                        <div class="country-tag">${country.tag}</div>
+                    </div>
+                    <div class="members-list">
+                        ${membersHTML}
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderCountries(currentFilter, e.target.value);
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderCountries(currentFilter, document.getElementById('searchInput').value);
+            });
+        });
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showCopyFeedback(text);
+            }).catch(err => {
+                console.error('コピーに失敗しました:', err);
+            });
+        }
+
+        function showCopyFeedback(text) {
+            const feedback = document.createElement('div');
+            feedback.className = 'copy-feedback';
+            feedback.textContent = `${text} をコピーしました!`;
+            document.body.appendChild(feedback);
+
+            setTimeout(() => {
+                feedback.style.opacity = '0';
+                feedback.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    document.body.removeChild(feedback);
+                }, 300);
+            }, 2000);
+        }
+
+        updateStats();
+        renderCountries();
+    </script>
+</body>
+</html>
+
