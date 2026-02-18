@@ -206,6 +206,19 @@
     .footer-social a:hover { color: #f1f5f9; border-color: #38bdf8; background: rgba(56,189,248,0.08); }
     .footer-social img { width: 18px; height: 18px; object-fit: contain;  transform: scale(1.05); }
     footer p { margin-bottom: 0.25rem; }
+      .about-section { max-width: 860px; margin: 0 auto 4rem; padding: 0 2rem; }
+  .about-section h2 { font-size: 1.5rem; font-weight: 700; color: #38bdf8; margin-bottom: 1.5rem; padding-left: 1rem; border-left: 4px solid #38bdf8; }
+  .about-card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 1.75rem 2rem; margin-bottom: 1.5rem; }
+  .about-card p { color: #cbd5e1; font-size: 0.97rem; line-height: 1.8; margin-bottom: 0.75rem; }
+  .about-card p:last-child { margin-bottom: 0; }
+  .about-card a { color: #38bdf8; text-decoration: none; font-size: 0.8rem; }
+  .about-card a:hover { text-decoration: underline; }
+  .addon-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+  .addon-item { background: rgba(56,189,248,0.05); border: 1px solid #334155; border-radius: 10px; padding: 1rem 1.25rem; }
+  .addon-item .addon-name { font-weight: 700; color: #f1f5f9; font-size: 0.97rem; margin-bottom: 0.3rem; }
+  .addon-item .addon-desc { color: #94a3b8; font-size: 0.88rem; line-height: 1.6; }
+  .addon-item .addon-link { font-size: 0.78rem; color: #38bdf8; text-decoration: none; }
+  .addon-item .addon-link:hover { text-decoration: underline; }
     @media (max-width: 640px) {
       .hero-title { font-size: 2.2rem; }
       .nav-cards { grid-template-columns: 1fr; max-width: 360px; }
@@ -260,6 +273,36 @@
     <div class="footer-social">
       <a href="https://line.me/ti/g2/uViXaSuCHoFWX0Z8WiyY2io4IRrXuT6t4OhRZA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">
         <img src="line_icon.png" alt="LINE"> LINE
+        
+    <!-- About Section -->
+    <section class="about-section">
+      <h2>新井鯖について</h2>
+      <div class="about-card">
+        <p>新井建国鯖は20人ほど入れるレンタルサーバーの<a href="https://xserver.ne.jp/xservergames/" target="_blank">XServer Games</a>を使って公開されているMinecraft統合版の建国サーバーです。</p>
+        <p>定期的な賭博イベント・PVPイベントや追加新要素があり、オリジナル要素を含んでいてとても楽しめます。</p>
+      </div>
+
+      <h2>使用中のアドオン</h2>
+      <div class="about-card">
+        <p>新井鯖はさまざまなアドオンを組み合わせて独自の体験を提供しています。</p>
+        <ul class="addon-list">
+          <li class="addon-item">
+            <div class="addon-name">Commander API 2</div>
+            <div class="addon-desc">コマンドの限界を突破する。コマンド勢に新たな力を。<br>開発者: 𝒩𝒶𝓃ℴ・あるたか</div>
+            <a class="addon-link" href="https://github.com/Unknown-Creators-Team/Commander-API" target="_blank">github.com/Unknown-Creators-Team/Commander-API</a>
+          </li>
+          <li class="addon-item">
+            <div class="addon-name">Commander API Extension</div>
+            <div class="addon-desc">Commander API の機能を拡張するための公式拡張機能。<br>開発者: 𝒩𝒶𝓃ℴ・あるたか</div>
+            <a class="addon-link" href="https://github.com/Unknown-Creators-Team/Commander-API" target="_blank">github.com/Unknown-Creators-Team/Commander-API</a>
+          </li>
+          <li class="addon-item">
+            <div class="addon-name">Arai Server Add-on（オリジナル）</div>
+            <div class="addon-desc">新井鯖技術班のCoco が制作したオリジナル機能満載のアドオン。Java版の経済サーバー<a href="https://minecraft.jp/servers/dan5.red" target="_blank">まんじゅうサーバー</a>から着想を受けています。非公開・配布予定なし。</div>
+          </li>
+        </ul>
+      </div>
+    </section>
       </a>
       <a href="https://discord.gg/EWphkMNb5h" target="_blank" rel="noopener">
         <img src="discord_icon.png" alt="Discord"> Discord
