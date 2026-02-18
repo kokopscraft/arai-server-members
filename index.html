@@ -12,7 +12,6 @@
       color: #f1f5f9;
       min-height: 100vh;
     }
-    /* ===== NAV ===== */
     .site-nav {
       background: rgba(15, 23, 42, 0.97);
       backdrop-filter: blur(10px);
@@ -73,7 +72,6 @@
       color: #38bdf8;
       border-color: rgba(56, 189, 248, 0.3);
     }
-    /* ===== HERO ===== */
     .hero {
       display: flex;
       flex-direction: column;
@@ -113,6 +111,7 @@
       z-index: 1;
       margin-bottom: 0.75rem;
     }
+    .hero-title .new-color { color: #b89c8f; }
     .hero-title span { color: #38bdf8; }
     .hero-subtitle {
       font-size: 1.15rem;
@@ -122,8 +121,12 @@
       position: relative;
       z-index: 1;
       margin-bottom: 2.5rem;
+      min-height: 3.4rem;
     }
-    /* ===== NAV CARDS ===== */
+    .dynamic-text {
+      color: #38bdf8;
+      font-weight: 600;
+    }
     .nav-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -168,7 +171,6 @@
     .card-desc { font-size: 0.82rem; color: #64748b; text-align: center; line-height: 1.5; }
     .card-arrow { font-size: 1rem; color: #38bdf8; opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
     .nav-card:hover .card-arrow { opacity: 1; transform: translateX(0); }
-    /* ===== FOOTER ===== */
     footer {
       text-align: center;
       padding: 2.5rem 2rem 2rem;
@@ -187,7 +189,7 @@
     .footer-social a {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
       color: #94a3b8;
       text-decoration: none;
       font-size: 0.85rem;
@@ -198,7 +200,7 @@
       transition: all 0.2s;
     }
     .footer-social a:hover { color: #f1f5f9; border-color: #38bdf8; background: rgba(56,189,248,0.08); }
-    .footer-social .icon { font-size: 1rem; }
+    .footer-social img { width: 18px; height: 18px; object-fit: contain; }
     footer p { margin-bottom: 0.25rem; }
     @media (max-width: 640px) {
       .hero-title { font-size: 2.2rem; }
@@ -225,8 +227,10 @@
   </nav>
   <section class="hero">
     <img src="3.png" alt="新井鯖 Logo" class="hero-logo">
-    <h1 class="hero-title">新井<span>鯖</span></h1>
-    <p class="hero-subtitle">Minecraftサーバー「新井鯖」の公式サイトです。<br>メンバー情報、ルール、管理情報を確認できます。</p>
+    <h1 class="hero-title"><span class="new-color">新井</span><span>鯖</span></h1>
+    <p class="hero-subtitle">
+      建国サーバーに<span class="dynamic-text" id="dynamicText">新たな出会いを。</span>
+    </p>
     <div class="nav-cards">
       <a href="members.html" class="nav-card">
         <span class="card-icon">👥</span>
@@ -251,20 +255,33 @@
   <footer>
     <div class="footer-social">
       <a href="https://line.me/ti/g2/uViXaSuCHoFWX0Z8WiyY2io4IRrXuT6t4OhRZA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">
-        <span class="icon">&#128172;</span> LINE
+        <img src="line_icon.png" alt="LINE"> LINE
       </a>
       <a href="https://discord.gg/EWphkMNb5h" target="_blank" rel="noopener">
-        <span class="icon">&#127760;</span> Discord
+        <img src="discord_icon.png" alt="Discord"> Discord
       </a>
       <a href="https://www.youtube.com/@arai_server" target="_blank" rel="noopener">
-        <span class="icon">&#9654;</span> YouTube
+        <img src="youtube_icon.png" alt="YouTube"> YouTube
       </a>
       <a href="https://x.com/913_arakuma" target="_blank" rel="noopener">
-        <span class="icon">&#10005;</span> X
+        <img src="x_icon.png" alt="X"> X
       </a>
     </div>
     <p>&copy; 2026 arai server. All rights reserved.</p>
     <p>無断転載・二次配布を禁じます。</p>
   </footer>
+  <script>
+    const texts = ['新たな出会いを。', 'さらなる利便性を。', '楽しい賑わいを。'];
+    let index = 0;
+    const dynamicText = document.getElementById('dynamicText');
+    setInterval(() => {
+      index = (index + 1) % texts.length;
+      dynamicText.style.opacity = '0';
+      setTimeout(() => {
+        dynamicText.textContent = texts[index];
+        dynamicText.style.opacity = '1';
+      }, 300);
+    }, 3000);
+  </script>
 </body>
 </html>
