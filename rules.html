@@ -147,6 +147,31 @@
       font-size: 0.85rem;
       border-top: 1px solid #1e293b;
     }
+        .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.45rem 1rem;
+      border-radius: 20px;
+      border: 1px solid #334155;
+      transition: all 0.2s;
+    }
+    .footer-social a:hover {
+      color: #f1f5f9;
+      border-color: #38bdf8;
+      background: rgba(56,189,248,0.08);
+    }
   </style>
 </head>
 <body>
@@ -438,7 +463,13 @@
   </div>
 
   <footer>
-    <p>&copy; 2026 arai server. All rights reserved.</p>
+        <div class="footer-social">
+      <a href="https://line.me/ti/g2/uViXaSuCHoFWX0Z8WiyY2io4IRrXuT6t4OhRZA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">&#128172; LINE</a>
+      <a href="https://discord.gg/EWphkMNb5h" target="_blank" rel="noopener">&#127760; Discord</a>
+      <a href="https://www.youtube.com/@arai_server" target="_blank" rel="noopener">&#9654; YouTube</a>
+      <a href="https://x.com/913_arakuma" target="_blank" rel="noopener">&#10005; X</a>
+    </div>
+<p>&copy; 2026 arai server. All rights reserved.</p>
     <p>無断転載・二次配布を禁じます。</p>
   </footer>
 </body>
