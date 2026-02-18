@@ -40,7 +40,7 @@
       border-radius: 8px;
       object-fit: cover;
     }
-    .nav-site-name {
+    .nav-title {
       font-size: 1.2rem;
       font-weight: 700;
       color: #38bdf8;
@@ -58,11 +58,13 @@
       border-radius: 6px;
       font-size: 0.9rem;
       font-weight: 500;
+          border: 1px solid transparent;
       transition: all 0.2s;
     }
     .nav-links a.active {
-      background: rgba(56, 189, 248, 0.12);
+          background: rgba(56,189,248,0.15);
       color: #38bdf8;
+          border: 1px solid rgba(56,189,248,0.3);
     }
     .container {
       max-width: 900px;
@@ -140,6 +142,7 @@
       border-left: 3px solid #38bdf8;
       line-height: 1.6;
     }
+            .point-info-item { background: rgba(56,189,248,0.12); border-left: 4px solid #38bdf8; font-weight: 600; color: #f1f5f9; }
     footer {
       text-align: center;
       padding: 3rem 2rem;
@@ -179,7 +182,7 @@
     <div class="nav-inner">
       <a href="index.html" class="nav-logo-link">
         <img src="3.png" alt="新井鯖" class="nav-logo">
-        <span class="nav-site-name">新井鯖</span>
+        <span class="nav-title">新井鯖</span>
       </a>
       <ul class="nav-links">
         <li><a href="index.html">🏠 Home</a></li>
@@ -452,7 +455,7 @@
       </ul>
     </div>
 
-    <div class="rule-section">
+            <div class="rule-section" style="border-color: #38bdf8; box-shadow: 0 0 20px rgba(56,189,248,0.25);">
       <h2 class="section-title">ポイント累積ルール・時効制度</h2>
       <ul class="point-info-list">
         <li class="point-info-item">違反ポイントが累積3点に達した場合、永久追放(BAN)</li>
