@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新井鯖</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            min-height: 100vh;
+        }
+
+        /* ===== NAV ===== */
+        .site-nav {
+            background: rgba(15, 23, 42, 0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #334155;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 2rem;
+        }
+        .nav-logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        .nav-site-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #38bdf8;
+            letter-spacing: 0.02em;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 0.25rem;
+        }
+        .nav-links a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #cbd5e1;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        .nav-links a:hover {
+            background: #1e293b;
+            color: #38bdf8;
+            border-color: #334155;
+        }
+        .nav-links a.active {
+            background: rgba(56, 189, 248, 0.12);
+            color: #38bdf8;
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(56,189,248,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 80% 80%, rgba(99,102,241,0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            object-fit: cover;
+            box-shadow: 0 0 40px rgba(56,189,248,0.35), 0 8px 32px rgba(0,0,0,0.5);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            border: 2px solid rgba(56,189,248,0.3);
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.75rem;
+        }
+        .hero-title span {
+            color: #38bdf8;
+        }
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: #94a3b8;
+            max-width: 500px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 2.5rem;
+        }
+
+        /* ===== NAV CARDS ===== */
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            max-width: 860px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .nav-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 2rem 1.5rem;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            text-decoration: none;
+            color: #f1f5f9;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(56,189,248,0.08) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .nav-card:hover {
+            transform: translateY(-4px);
+            border-color: #38bdf8;
+            box-shadow: 0 8px 32px rgba(56,189,248,0.18), 0 2px 8px rgba(0,0,0,0.4);
+        }
+        .nav-card:hover::before { opacity: 1; }
+        .card-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        .card-desc {
+            font-size: 0.82rem;
+            color: #64748b;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .card-arrow {
+            font-size: 1rem;
+            color: #38bdf8;
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: all 0.2s;
+        }
+        .nav-card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #475569;
+            font-size: 0.8rem;
+            border-top: 1px solid #1e293b;
+            margin-top: 4rem;
+        }
+        footer p { margin-bottom: 0.25rem; }
+
+        @media (max-width: 640px) {
+            .hero-title { font-size: 2.2rem; }
+            .nav-cards { grid-template-columns: 1fr; max-width: 360px; }
+            .nav-inner { padding: 0.75rem 1rem; }
+            .nav-links a { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo-link">
+                <img src="3.png" alt="新井鯖" class="nav-logo">
+                <span class="nav-site-name">新井鯖</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">🏠 Home</a></li>
+                <li><a href="members.html">👥 Members</a></li>
+                <li><a href="rules.html">📜 Rules</a></li>
+                <li><a href="admin.html">🛡️ Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <img src="3.png" alt="新井鯖 Logo" class="hero-logo">
+        <h1 class="hero-title">新井<span>鯖</span></h1>
+        <p class="hero-subtitle">Minecraftサーバー「新井鯖」の公式サイトです。<br>メンバー情報、ルール、管理情報を確認できます。</p>
+
+        <div class="nav-cards">
+            <a href="members.html" class="nav-card">
+                <span class="card-icon">👥</span>
+                <span class="card-title">Members</span>
+                <span class="card-desc">国民・ネームタグ一覧</span>
+                <span class="card-arrow">→</span>
+            </a>
+            <a href="rules.html" class="nav-card">
+                <span class="card-icon">📜</span>
+                <span class="card-title">Rules</span>
+                <span class="card-desc">サーバールール</span>
+                <span class="card-arrow">→</span>
+            </a>
+            <a href="admin.html" class="nav-card">
+                <span class="card-icon">🛡️</span>
+                <span class="card-title">Admin</span>
+                <span class="card-desc">管理者情報</span>
+                <span class="card-arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 arai server. All rights reserved.</p>
+        <p>無断転載・二次配布を禁じます。</p>
+    </footer>
+
+</body>
+</html>
