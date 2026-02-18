@@ -94,42 +94,43 @@
       padding: 2rem;
       margin-bottom: 2rem;
     }
-    .admin-section h2 {
-      font-size: 1.5rem;
-      color: #38bdf8;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid #334155;
-    }
     .server-owner {
       background: #334155;
-      padding: 1rem;
+      padding: 1.5rem;
       border-radius: 8px;
       margin-bottom: 2rem;
       border-left: 4px solid #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
     }
-    .server-owner .role {
+    .character-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid #38bdf8;
+      object-fit: cover;
+      background: #0f172a;
+    }
+    .owner-info .role {
       font-size: 0.875rem;
       color: #38bdf8;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
     }
-    .server-owner .name {
-      font-size: 1.25rem;
+    .owner-info .name {
+      font-size: 1.5rem;
       color: #f1f5f9;
-      font-weight: 600;
+      font-weight: 700;
     }
     .department {
-      margin-bottom: 2rem;
-    }
-    .department:last-child {
-      margin-bottom: 0;
+      margin-bottom: 2.5rem;
     }
     .dept-header {
       background: #334155;
       padding: 0.75rem 1rem;
       border-radius: 8px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
     .dept-title {
       font-size: 1.25rem;
@@ -141,28 +142,41 @@
       font-size: 0.875rem;
       color: #94a3b8;
     }
-    .members-list {
+    .members-grid {
       display: grid;
-      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
     }
-    .member-item {
+    .member-card {
       background: #0f172a;
       padding: 1rem;
       border-radius: 8px;
       border: 1px solid #334155;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       transition: all 0.2s;
     }
-    .member-item:hover {
+    .member-card:hover {
       border-color: #38bdf8;
       background: rgba(56, 189, 248, 0.05);
+      transform: translateY(-2px);
     }
-    .member-role {
+    .member-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid #475569;
+      object-fit: cover;
+      background: #1e293b;
+    }
+    .member-info .role {
       font-size: 0.75rem;
       color: #38bdf8;
       font-weight: 600;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.125rem;
     }
-    .member-name {
+    .member-info .name {
       color: #f1f5f9;
       font-size: 1rem;
       font-weight: 500;
@@ -204,6 +218,11 @@
       background: rgba(56,189,248,0.08);
       transform: scale(1.05);
     }
+    .social-icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
   </style>
 </head>
 <body>
@@ -214,90 +233,120 @@
         <span class="nav-title">新井鯖</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html">🏠 Home</a></li>
-        <li><a href="members.html">👥 Members</a></li>
-        <li><a href="rules.html">📜 Rules</a></li>
-        <li><a href="admin.html" class="active">🛡️ Admin</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="members.html">Members</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="admin.html" class="active">Admin</a></li>
       </ul>
     </div>
   </nav>
 
   <div class="container">
     <header>
-      <h1>🛡️ Admin</h1>
+      <h1>Admin</h1>
       <p class="subtitle">サーバー運営メンバー</p>
     </header>
 
     <div class="admin-section">
       <div class="server-owner">
-        <div class="role">鯖主</div>
-        <div class="name">新井熊（あらくま）</div>
+        <img src="arakuma.png" alt="新井熊" class="character-img">
+        <div class="owner-info">
+          <div class="role">鯖主</div>
+          <div class="name">新井熊（あらくま）</div>
+        </div>
       </div>
 
       <div class="department">
         <div class="dept-header">
-          <div class="dept-title">⚖️ 法務部門</div>
+          <div class="dept-title">法務部門</div>
           <div class="dept-desc">サーバー内の問題解決や総合運営</div>
         </div>
-        <div class="members-list">
-          <div class="member-item">
-            <div class="member-role">裁判官</div>
-            <div class="member-name">あらくま</div>
+        <div class="members-grid">
+          <div class="member-card">
+            <img src="arakuma.png" alt="あらくま" class="member-avatar">
+            <div class="member-info">
+              <div class="role">裁判官</div>
+              <div class="name">あらくま</div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="department">
         <div class="dept-header">
-          <div class="dept-title">🔧 技術部門</div>
+          <div class="dept-title">技術部門</div>
           <div class="dept-desc">サーバーの技術部分の作成および更新</div>
         </div>
-        <div class="members-list">
-          <div class="member-item">
-            <div class="member-role">部長</div>
-            <div class="member-name">ココ</div>
+        <div class="members-grid">
+          <div class="member-card">
+            <img src="koko.png" alt="ココ" class="member-avatar">
+            <div class="member-info">
+              <div class="role">部長</div>
+              <div class="name">ココ</div>
+            </div>
           </div>
-          <div class="member-item">
-            <div class="member-role">部員</div>
-            <div class="member-name">もぐらコロッケ（もぐころ）</div>
+          <div class="member-card">
+            <img src="mogukoro.png" alt="もぐころ" class="member-avatar">
+            <div class="member-info">
+              <div class="role">部員</div>
+              <div class="name">もぐらコロッケ（もぐころ）</div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="department">
         <div class="dept-header">
-          <div class="dept-title">💰 経理部門</div>
+          <div class="dept-title">経理部門</div>
           <div class="dept-desc">サーバー内のマップの管理</div>
         </div>
-        <div class="members-list">
-          <div class="member-item">
-            <div class="member-role">部長</div>
-            <div class="member-name">こいし</div>
+        <div class="members-grid">
+          <div class="member-card">
+            <div class="member-avatar"></div>
+            <div class="member-info">
+              <div class="role">部長</div>
+              <div class="name">こいし</div>
+            </div>
           </div>
-          <div class="member-item">
-            <div class="member-role">部員</div>
-            <div class="member-name">しいなかげひと（しいな）</div>
+          <div class="member-card">
+            <img src="siinakagehito.png" alt="しいな" class="member-avatar">
+            <div class="member-info">
+              <div class="role">部員</div>
+              <div class="name">しいなかげひと（しいな）</div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="department">
         <div class="dept-header">
-          <div class="dept-title">📋 総合部門</div>
+          <div class="dept-title">総合部門</div>
           <div class="dept-desc">イベントの運営や雑務</div>
         </div>
-        <div class="members-list">
-          <div class="member-item">
-            <div class="member-name">もぐころ</div>
+        <div class="members-grid">
+          <div class="member-card">
+            <img src="mogukoro.png" alt="もぐころ" class="member-avatar">
+            <div class="member-info">
+              <div class="name">もぐころ</div>
+            </div>
           </div>
-          <div class="member-item">
-            <div class="member-name">焼き鳥は美味いよな？（焼き鳥）</div>
+          <div class="member-card">
+            <div class="member-avatar"></div>
+            <div class="member-info">
+              <div class="name">焼き鳥は美味いよな？（焼き鳥）</div>
+            </div>
           </div>
-          <div class="member-item">
-            <div class="member-name">こいし</div>
+          <div class="member-card">
+            <div class="member-avatar"></div>
+            <div class="member-info">
+              <div class="name">こいし</div>
+            </div>
           </div>
-          <div class="member-item">
-            <div class="member-name">しいな</div>
+          <div class="member-card">
+            <img src="siinakagehito.png" alt="しいな" class="member-avatar">
+            <div class="member-info">
+              <div class="name">しいな</div>
+            </div>
           </div>
         </div>
       </div>
@@ -306,16 +355,16 @@
     <footer>
       <div class="footer-social">
         <a href="https://line.me/ti/g2/uViXaSuCHoFWX0Z8WiyY2io4IRrXuT6t4OhRZA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">
-          <img src="line_icon.png" alt="LINE" style="width:18px;height:18px;object-fit:contain;"> LINE
+          <img src="line_icon.png" alt="LINE" class="social-icon"> LINE
         </a>
         <a href="https://discord.gg/EWphkMNb5h" target="_blank" rel="noopener">
-          <img src="discord_icon.png" alt="Discord" style="width:18px;height:18px;object-fit:contain;"> Discord
+          <img src="discord_icon.png" alt="Discord" class="social-icon"> Discord
         </a>
         <a href="https://www.youtube.com/@arai_server" target="_blank" rel="noopener">
-          <img src="youtube_icon.png" alt="YouTube" style="width:18px;height:18px;object-fit:contain;"> YouTube
+          <img src="youtube_icon.png" alt="YouTube" class="social-icon"> YouTube
         </a>
         <a href="https://x.com/913_arakuma" target="_blank" rel="noopener">
-          ✕ X
+          <img src="x_icon.png" alt="X" class="social-icon"> X
         </a>
       </div>
       <p>© 2026 arai server. All rights reserved.</p>
