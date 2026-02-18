@@ -7,46 +7,43 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #0f172a;
+      color: #f1f5f9;
       min-height: 100vh;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
     }
-    nav {
-      background: rgba(255,255,255,0.05);
+    .site-nav {
+      background: rgba(15, 23, 42, 0.97);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding: 0 2rem;
+      border-bottom: 1px solid #334155;
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    .nav-container {
+    .nav-inner {
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      padding: 0.75rem 2rem;
     }
-    .nav-logo {
+    .nav-logo-link {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 0.75rem;
       text-decoration: none;
-      color: #fff;
+      color: #f1f5f9;
     }
-    .nav-logo img {
+    .nav-logo {
       width: 40px;
       height: 40px;
       border-radius: 8px;
-      object-fit: cover;
     }
-    .nav-logo span {
-      font-size: 1.2rem;
+    .nav-title {
+      font-size: 1.25rem;
       font-weight: 700;
+      color: #38bdf8;
     }
     .nav-links {
       list-style: none;
@@ -54,72 +51,134 @@
       gap: 0.5rem;
     }
     .nav-links a {
-      color: rgba(255,255,255,0.75);
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #cbd5e1;
       text-decoration: none;
-      padding: 0.4rem 1rem;
       border-radius: 6px;
-      font-size: 0.95rem;
       transition: all 0.2s;
     }
     .nav-links a:hover {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
+      background: #1e293b;
+      color: #38bdf8;
     }
     .nav-links a.active {
-      background: rgba(99,179,237,0.2);
-      color: #63b3ed;
+      background: rgba(56,189,248,0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56,189,248,0.3);
     }
-    .coming-soon {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    header {
       text-align: center;
-      padding: 4rem 2rem;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid #334155;
     }
-    .coming-soon-icon {
-      font-size: 5rem;
-      margin-bottom: 1.5rem;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-    .coming-soon h2 {
+    h1 {
       font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #63b3ed;
+      margin-bottom: 0.5rem;
+      color: #38bdf8;
     }
-    .coming-soon p {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.6);
-      max-width: 400px;
-      line-height: 1.7;
+    .subtitle {
+      color: #94a3b8;
+      font-size: 1rem;
     }
-    .back-btn {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 0.7rem 2rem;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: #fff;
+    .admin-section {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .admin-section h2 {
+      font-size: 1.5rem;
+      color: #38bdf8;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #334155;
+    }
+    .server-owner {
+      background: #334155;
+      padding: 1rem;
       border-radius: 8px;
-      text-decoration: none;
+      margin-bottom: 2rem;
+      border-left: 4px solid #38bdf8;
+    }
+    .server-owner .role {
+      font-size: 0.875rem;
+      color: #38bdf8;
       font-weight: 600;
-      transition: opacity 0.2s;
+      margin-bottom: 0.5rem;
     }
-    .back-btn:hover { opacity: 0.85; }
+    .server-owner .name {
+      font-size: 1.25rem;
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+    .department {
+      margin-bottom: 2rem;
+    }
+    .department:last-child {
+      margin-bottom: 0;
+    }
+    .dept-header {
+      background: #334155;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .dept-title {
+      font-size: 1.25rem;
+      color: #38bdf8;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .dept-desc {
+      font-size: 0.875rem;
+      color: #94a3b8;
+    }
+    .members-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+    .member-item {
+      background: #0f172a;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      transition: all 0.2s;
+    }
+    .member-item:hover {
+      border-color: #38bdf8;
+      background: rgba(56, 189, 248, 0.05);
+    }
+    .member-role {
+      font-size: 0.75rem;
+      color: #38bdf8;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .member-name {
+      color: #f1f5f9;
+      font-size: 1rem;
+      font-weight: 500;
+    }
     footer {
-      background: rgba(0,0,0,0.3);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 1.5rem 2rem;
       text-align: center;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.85rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #334155;
+      color: #94a3b8;
+      font-size: 0.875rem;
     }
-    footer p { margin: 0.2rem 0; }
-        .footer-social {
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+    .footer-social {
       display: flex;
       justify-content: center;
       gap: 1.25rem;
@@ -129,53 +188,139 @@
     .footer-social a {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      color: rgba(255,255,255,0.6);
+      gap: 0.5rem;
+      color: #94a3b8;
       text-decoration: none;
       font-size: 0.85rem;
       font-weight: 500;
       padding: 0.45rem 1rem;
       border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.15);
-      transition: all 0.2s;
+      border: 1px solid #334155;
+      transition: all 0.3s ease;
     }
     .footer-social a:hover {
-      color: #fff;
-      border-color: rgba(255,255,255,0.4);
-      background: rgba(255,255,255,0.08);
+      color: #f1f5f9;
+      border-color: #38bdf8;
+      background: rgba(56,189,248,0.08);
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">
-        <img src="3.png" alt="新井鯖 Logo">
-        <span>新井鯖</span>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo-link">
+        <img src="3.png" alt="新井鯖" class="nav-logo">
+        <span class="nav-title">新井鯖</span>
       </a>
       <ul class="nav-links">
         <li><a href="index.html">🏠 Home</a></li>
         <li><a href="members.html">👥 Members</a></li>
-        <li><a href="rules.html">📋 Rules</a></li>
-        <li><a href="admin.html" class="active">🛡 Admin</a></li>
+        <li><a href="rules.html">📜 Rules</a></li>
+        <li><a href="admin.html" class="active">🛡️ Admin</a></li>
       </ul>
     </div>
   </nav>
-  <div class="coming-soon">
-    <span class="coming-soon-icon">🛡</span>
-    <h2>Coming Soon</h2>
-    <p>管理者ページは現在準備中です。<br>しばらくお待ちください。</p>
-    <a href="index.html" class="back-btn">← ホームに戻る</a>
-  </div>
-  <footer>
-        <div class="footer-social">
-      <a href="https://line.me/ti/g2/uViXaSuCHoFWX0Z8WiyY2io4IRrXuT6t4OhRZA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">&#128172; LINE</a>
-      <a href="https://discord.gg/EWphkMNb5h" target="_blank" rel="noopener">&#127760; Discord</a>
-      <a href="https://www.youtube.com/@arai_server" target="_blank" rel="noopener">&#9654; YouTube</a>
-      <a href="https://x.com/913_arakuma" target="_blank" rel="noopener">&#10005; X</a>
+
+  <div class="container">
+    <header>
+      <h1>🛡️ Admin</h1>
+      <p class="subtitle">サーバー運営メンバー</p>
+    </header>
+
+    <div class="admin-section">
+      <div class="server-owner">
+        <div class="role">鯖主</div>
+        <div class="name">新井熊（あらくま）</div>
+      </div>
+
+      <div class="department">
+        <div class="dept-header">
+          <div class="dept-title">⚖️ 法務部門</div>
+          <div class="dept-desc">サーバー内の問題解決や総合運営</div>
+        </div>
+        <div class="members-list">
+          <div class="member-item">
+            <div class="member-role">裁判官</div>
+            <div class="member-name">あらくま</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="department">
+        <div class="dept-header">
+          <div class="dept-title">🔧 技術部門</div>
+          <div class="dept-desc">サーバーの技術部分の作成および更新</div>
+        </div>
+        <div class="members-list">
+          <div class="member-item">
+            <div class="member-role">部長</div>
+            <div class="member-name">ココ</div>
+          </div>
+          <div class="member-item">
+            <div class="member-role">部員</div>
+            <div class="member-name">もぐらコロッケ（もぐころ）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="department">
+        <div class="dept-header">
+          <div class="dept-title">💰 経理部門</div>
+          <div class="dept-desc">サーバー内のマップの管理</div>
+        </div>
+        <div class="members-list">
+          <div class="member-item">
+            <div class="member-role">部長</div>
+            <div class="member-name">こいし</div>
+          </div>
+          <div class="member-item">
+            <div class="member-role">部員</div>
+            <div class="member-name">しいなかげひと（しいな）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="department">
+        <div class="dept-header">
+          <div class="dept-title">📋 総合部門</div>
+          <div class="dept-desc">イベントの運営や雑務</div>
+        </div>
+        <div class="members-list">
+          <div class="member-item">
+            <div class="member-name">もぐころ</div>
+          </div>
+          <div class="member-item">
+            <div class="member-name">焼き鳥は美味いよな？（焼き鳥）</div>
+          </div>
+          <div class="member-item">
+            <div class="member-name">こいし</div>
+          </div>
+          <div class="member-item">
+            <div class="member-name">しいな</div>
+          </div>
+        </div>
+      </div>
     </div>
-<p>&copy; 2026 arai server. All rights reserved.</p>
-    <p>無断転載・二次配布を禁じます。</p>
-  </footer>
+
+    <footer>
+      <div class="footer-social">
+        <a href="https://line.me/ti/g2/uViXaSuCHoFWX0Z8WiyY2io4IRrXuT6t4OhRZA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">
+          <img src="line_icon.png" alt="LINE" style="width:18px;height:18px;object-fit:contain;"> LINE
+        </a>
+        <a href="https://discord.gg/EWphkMNb5h" target="_blank" rel="noopener">
+          <img src="discord_icon.png" alt="Discord" style="width:18px;height:18px;object-fit:contain;"> Discord
+        </a>
+        <a href="https://www.youtube.com/@arai_server" target="_blank" rel="noopener">
+          <img src="youtube_icon.png" alt="YouTube" style="width:18px;height:18px;object-fit:contain;"> YouTube
+        </a>
+        <a href="https://x.com/913_arakuma" target="_blank" rel="noopener">
+          ✕ X
+        </a>
+      </div>
+      <p>© 2026 arai server. All rights reserved.</p>
+      <p>無断転載・二次配布を禁じます。</p>
+    </footer>
+  </div>
 </body>
 </html>
