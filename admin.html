@@ -119,6 +119,31 @@
       font-size: 0.85rem;
     }
     footer p { margin: 0.2rem 0; }
+        .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.45rem 1rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.2s;
+    }
+    .footer-social a:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.08);
+    }
   </style>
 </head>
 <body>
@@ -143,7 +168,13 @@
     <a href="index.html" class="back-btn">← ホームに戻る</a>
   </div>
   <footer>
-    <p>&copy; 2026 arai server. All rights reserved.</p>
+        <div class="footer-social">
+      <a href="https://line.me/ti/g2/uViXaSuCHoFWX0Z8WiyY2io4IRrXuT6t4OhRZA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">&#128172; LINE</a>
+      <a href="https://discord.gg/EWphkMNb5h" target="_blank" rel="noopener">&#127760; Discord</a>
+      <a href="https://www.youtube.com/@arai_server" target="_blank" rel="noopener">&#9654; YouTube</a>
+      <a href="https://x.com/913_arakuma" target="_blank" rel="noopener">&#10005; X</a>
+    </div>
+<p>&copy; 2026 arai server. All rights reserved.</p>
     <p>無断転載・二次配布を禁じます。</p>
   </footer>
 </body>
