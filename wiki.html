@@ -834,7 +834,10 @@
           <li><a href="#gen3-bindscord">Bindscord</a></li>
           <li><a href="#gen3-gwarp">G Warp</a></li>
           <li><a href="#gen3-wcu">ワールドクリーンアップ</a></li>
+          <li><a href="#gen3-protection">保護機能</a></li>
+          <li><a href="#gen3-sidebar">サイドバー</a></li>
           <li><a href="#gen3-osmium">固有鉱石「オスミウム」について</a></li>
+          <li><a href="#gen3-recipes">追加レシピ</a></li>
           <li><a href="#gen3-coreprotect">Core Protect</a></li>
         </ul>
       </div>
@@ -1477,11 +1480,23 @@
           <thead><tr><th>コマンド</th><th>説明</th><th>備考</th></tr></thead>
           <tbody>
             <tr><td><code>!hub</code></td><td>ハブにテレポート</td><td><code>!home</code>, <code>!arai</code>, <code>!lobby</code> でも可</td></tr>
-            <tr><td><code>!gwarp</code></td><td>G Warpフォームを開く</td><td>テレポート先選択UI</td></tr>
+            <tr><td><code>!gwarp [引数]</code></td><td>G Warpフォームを開く</td><td>引数なしでテレポート先選択UI。引数は下表</td></tr>
             <tr><td><code>!tpr &lt;プレイヤー名&gt;</code></td><td>テレポート申請を送信</td><td>相手の承認が必要</td></tr>
-            <tr><td><code>!tpa</code></td><td>テレポート要請を公開</td><td>全プレイヤーに表示</td></tr>
+            <tr><td><code>!tpa [プレイヤー名]</code></td><td>テレポート要請を公開</td><td>全プレイヤーに表示。プレイヤー名を指定すると相手を限定でき、もう一度実行するとキャンセル</td></tr>
             <tr><td><code>yes</code></td><td>テレポート申請を承認</td><td>相手の要請に応答</td></tr>
             <tr><td><code>no</code></td><td>テレポート申請を拒否</td><td>相手の要請に応答</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="font-size:0.95rem;font-weight:600;color:#cbd5e1;margin:1rem 0 0.5rem;padding-left:0.75rem;border-left:2px solid #475569;"><code>!gwarp</code> の引数</h4>
+        <table class="wiki-table">
+          <thead><tr><th>引数</th><th>動作</th></tr></thead>
+          <tbody>
+            <tr><td>（なし）</td><td>G Warpのフォームを開く</td></tr>
+            <tr><td><code>hub</code></td><td>HUBへ直接ワープ</td></tr>
+            <tr><td><code>login</code></td><td>ログイン地点へ直接ワープ（<code>ログイン</code>でも可）</td></tr>
+            <tr><td><code>ct</code></td><td>自国のワープポイント一覧を開く</td></tr>
+            <tr><td><code>&lt;区画ID&gt;</code></td><td>Core Protectの保護区画へワープ（例: <code>!gwarp a0001</code>）</td></tr>
           </tbody>
         </table>
 
@@ -1492,6 +1507,9 @@
             <tr><td><code>!help [コマンド名]</code></td><td>チャットコマンドのヘルプ表示</td></tr>
             <tr><td><code>!version</code></td><td>サーバーのバージョン情報表示</td></tr>
             <tr><td><code>etc</code></td><td>ワールドクリーンアップ時間を10分延長</td></tr>
+            <tr><td><code>!coreprotect</code></td><td>Core Protectの保護区画管理フォームを開く（<code>!cp</code> でも可）</td></tr>
+            <tr><td><code>!barter</code></td><td>バーター棚の管理フォームを開く</td></tr>
+            <tr><td><code>!rec</code></td><td>収録中ステータスを切り替える。配信・録画をしていることを周囲に忠告するためのシステム</td></tr>
           </tbody>
         </table>
 
@@ -1611,10 +1629,11 @@
             <tr><td>1</td><td>オスマン帝国</td><td><code>ct:ottoman</code>タグ所持</td></tr>
             <tr><td>2</td><td>スペイン王国</td><td><code>ct:spain</code>タグ所持</td></tr>
             <tr><td>3</td><td>フランス共和国</td><td><code>ct:anglo_french</code>タグ所持</td></tr>
-            <tr><td>4</td><td>教皇領</td><td><code>ct:hre</code>タグ所持</td></tr>
-            <tr><td>5</td><td>大スウェーデン連邦</td><td><code>ct:sweden</code>タグ所持</td></tr>
-            <tr><td>6</td><td>スラヴ=ロシア帝国</td><td><code>ct:pol_lith</code>タグ所持</td></tr>
-            <tr><td>7</td><td>運営チャット</td><td><code>operator</code>タグ所持</td></tr>
+            <tr><td>4</td><td>神聖オーストリア帝国</td><td><code>ct:hre</code>タグ所持</td></tr>
+            <tr><td>5</td><td>大バルト帝国</td><td><code>ct:sweden</code>タグ所持</td></tr>
+            <tr><td>6</td><td>スラヴ=ロシア帝国</td><td><code>ct:slav_russ</code>タグ所持</td></tr>
+            <tr><td>7</td><td>キプロス帝政禍國</td><td><code>ct:cyprus</code>タグ所持</td></tr>
+            <tr><td>8</td><td>運営チャット</td><td><code>operator</code>タグ所持</td></tr>
           </tbody>
         </table>
 
@@ -1644,6 +1663,7 @@
             <tr><td><strong>HUB</strong></td><td>メインハブへテレポート</td></tr>
             <tr><td><strong>ログイン</strong></td><td>初回ログイン地点へテレポート</td></tr>
             <tr><td><strong>自国に登録された地点</strong></td><td>自分の国に登録しているワープポイント</td></tr>
+            <tr><td><strong>サーバー一覧</strong></td><td>新井鯖に登録されている別サーバーへ転送できます</td></tr>
           </tbody>
         </table>
 
@@ -1686,7 +1706,7 @@
           <p><strong>削除対象：</strong></p>
           <ul>
             <li>ワールドに落ちているアイテム</li>
-            <li>敵モブ（村人ゾンビを除く）</li>
+            <li>敵モブ（村人ゾンビ・スケルトンホース・エンダードラゴン・ウィザーを除く。ネザーではピグリンとピグリンブルートも対象外）</li>
             <li>経験値オーブ</li>
           </ul>
         </div>
@@ -1705,11 +1725,18 @@
         <div class="wiki-card">
           <p><strong>エンティティに特殊な名前を付けることで、削除から保護できます：</strong></p>
           <ul>
-            <li><strong>keep</strong> — 削除されない（最も一般的な保護方法）</li>
-            <li><strong>dinnerbone</strong> — 削除されない</li>
-            <li><strong>Grumm</strong> — 削除されない</li>
+            <li><strong>keep</strong> — 最も一般的な保護方法</li>
+            <li><strong>Dinnerbone</strong> / <strong>Grumm</strong> — バニラの逆さま表示と兼用</li>
+            <li><strong>jeb_</strong> / <strong>Toast</strong> / <strong>Johnny</strong> — バニラのイースターエッグ名</li>
+            <li><strong>(A)</strong> と <strong>(1)</strong>〜<strong>(10)</strong>（<strong>(10).</strong> / <strong>(10)..</strong> / <strong>(10)...</strong> を含む）</li>
+            <li><strong>[A]</strong> と <strong>[1]</strong>〜<strong>[10]</strong>（<strong>[10].</strong> / <strong>[10]..</strong> / <strong>[10]...</strong> を含む）</li>
           </ul>
-          <p>上記の名前を付けたエンティティはWCUでは削除されません。</p>
+          <p>上記の名前を付けたエンティティはWCUでは削除されません。複数のエンティティを区別したいときは、丸括弧・角括弧の連番が便利です。</p>
+        </div>
+
+        <div class="warn-banner">
+          <i data-lucide="alert-circle"></i>
+          <span>名前は<strong style="color:#f1f5f9;">大文字・小文字まで完全に一致</strong>している必要があります。<code>Dinnerbone</code> は保護されますが、<code>dinnerbone</code> では保護されません。</span>
         </div>
 
         <h3 class="wiki-subsection-title">ログ設定</h3>
@@ -1721,6 +1748,78 @@
         <div class="warn-banner">
           <i data-lucide="alert-circle"></i>
           <span>ただし、<strong style="color:#f1f5f9;">10秒前のアラート</strong>と<strong style="color:#f1f5f9;">実行通知</strong>は設定でオフにしても必ず届きます。重要な通知のため無視できません。</span>
+        </div>
+      </section>
+
+      <!-- ── 第三期: 保護機能 ── -->
+      <section class="wiki-section gen3-content" id="gen3-protection" data-keywords="保護機能 保護モード 死亡 ドロップ 全ロス リカバリーコンパス">
+        <h2 class="wiki-section-title">
+          <i data-lucide="shield"></i>
+          保護機能
+        </h2>
+
+        <h3 class="wiki-subsection-title">保護機能とは</h3>
+        <div class="wiki-card">
+          <p><strong>保護機能</strong>は、死亡してドロップしたアイテムを一定時間守るシステムです。死んだ瞬間に死亡地点の座標がチャットに表示され、そのまま<strong>保護モード</strong>が始まります。</p>
+          <p>死亡地点には炎のパーティクルが出続けるため、遠くからでも落とした場所を見つけられます。</p>
+        </div>
+
+        <h3 class="wiki-subsection-title">保護モードの仕様</h3>
+        <table class="wiki-table">
+          <thead><tr><th>項目</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><td>保護時間</td><td class="attn">5分間</td></tr>
+            <tr><td>他プレイヤーの回収</td><td>不可（本人以外は拾えません）</td></tr>
+            <tr><td>ホッパーなどでの回収</td><td>不可</td></tr>
+            <tr><td>インベントリの復元</td><td>拾ったアイテムが死亡前と同じスロットへ自動で戻ります</td></tr>
+            <tr><td>回収完了</td><td>全て拾うと「保護完了」が通知されます</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="wiki-subsection-title">リカバリーコンパス</h3>
+        <div class="wiki-card">
+          <p>保護モード中は、手持ちの<strong>メインメニュー</strong>が一時的に<strong>リカバリーコンパス</strong>に変化し、死亡地点の方向を指し示します。</p>
+          <p>全てのアイテムを回収すると、コンパスは自動的にメインメニューへ戻ります。</p>
+        </div>
+
+        <div class="warn-banner">
+          <i data-lucide="alert-circle"></i>
+          <span>保護時間の<strong style="color:#f1f5f9;">5分</strong>を過ぎると保護は解除され、以降は誰でも拾えるようになります。ワールドクリーンアップの削除対象にもなるため、早めの回収を心がけてください。</span>
+        </div>
+      </section>
+
+      <!-- ── 第三期: サイドバー ── -->
+      <section class="wiki-section gen3-content" id="gen3-sidebar" data-keywords="サイドバー スコアボード オンライン人数 WCU 井戸鯖 残り時間">
+        <h2 class="wiki-section-title">
+          <i data-lucide="table-2"></i>
+          サイドバー
+        </h2>
+
+        <h3 class="wiki-subsection-title">サイドバーとは</h3>
+        <div class="wiki-card">
+          <p>画面の右側に常時表示されるスコアボードです。日時・オンライン人数・ワールドクリーンアップの残り時間をひと目で確認できます。</p>
+        </div>
+
+        <h3 class="wiki-subsection-title">表示される項目</h3>
+        <table class="wiki-table">
+          <thead><tr><th>項目</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><td>日時</td><td>日本時間の年月日と時刻</td></tr>
+            <tr><td>オンライン／新井鯖</td><td>このサーバーの接続人数</td></tr>
+            <tr><td>オンライン／井戸鯖</td><td>井戸鯖の接続人数</td></tr>
+            <tr><td>WCUまで...</td><td>ワールドクリーンアップまでの残り時間（分・秒）</td></tr>
+            <tr><td>対象エンティティ</td><td>次のクリーンアップで削除される数</td></tr>
+            <tr><td>公式サイト</td><td>最下段に <code>arai-server.pages.dev</code> を表示</td></tr>
+          </tbody>
+        </table>
+
+        <div class="info-banner">
+          <i data-lucide="info"></i>
+          <span><code>etc</code> でワールドクリーンアップを延長すると、残り時間の横に <strong>(+10分)</strong> のバッジが数秒間表示されます。</span>
+        </div>
+
+        <div class="wiki-card">
+          <p>井戸鯖の人数は外部から取得しているため、取得に失敗している間は <code>null</code> と表示されます。しばらく待てば元に戻ります。</p>
         </div>
       </section>
 
@@ -1741,7 +1840,7 @@
           <ul>
             <li><strong>ブロックID：</strong> <code>asa3:osmium_ore</code></li>
             <li><strong>採掘時間：</strong>4秒（鉄以上のツルハシが必要）</li>
-            <li><strong>ドロップ：</strong>オスミウムの原石</li>
+            <li><strong>ドロップ：</strong>オスミウムの原石 <strong>1〜3個</strong>（シルクタッチの場合はオスミウム鉱石がそのままドロップ）</li>
             <li><strong>爆発耐性：</strong>3.0</li>
           </ul>
         </div>
@@ -1795,17 +1894,103 @@
           <ul>
             <li><strong>入力：</strong>オスミウムの原石</li>
             <li><strong>出力：</strong>オスミウムインゴット（1:1の比率）</li>
-            <li><strong>使用可能：</strong>かまど、燻製器、溶鉱炉</li>
+            <li><strong>使用可能：</strong>かまど、溶鉱炉</li>
           </ul>
         </div>
         <div class="wiki-card">
           <p><strong>オスミウム鉱石を精錬</strong></p>
           <ul>
             <li><strong>入力：</strong>オスミウム鉱石</li>
-            <li><strong>出力：</strong>オスミウムインゴット（追加経験値付き）</li>
-            <li><strong>使用可能：</strong>かまど、燻製器、溶鉱炉</li>
+            <li><strong>出力：</strong>オスミウムインゴット</li>
+            <li><strong>使用可能：</strong>かまど、溶鉱炉</li>
           </ul>
         </div>
+      </section>
+
+      <!-- ── 第三期: 追加レシピ ── -->
+      <section class="wiki-section gen3-content" id="gen3-recipes" data-keywords="追加レシピ クラフト 圧縮ブロック シュルカーボックス エンダーシェル 染色 解体">
+        <h2 class="wiki-section-title">
+          <i data-lucide="sparkles"></i>
+          追加レシピ
+        </h2>
+
+        <h3 class="wiki-subsection-title">追加レシピとは</h3>
+        <div class="wiki-card">
+          <p>バニラでは手に入りにくいアイテムを作れるようにしたり、資材を圧縮して収納を節約したりするために追加されたクラフトレシピです。すべて<strong>作業台</strong>で作成できます。</p>
+        </div>
+
+        <h3 class="wiki-subsection-title">シュルカーボックス</h3>
+        <div class="wiki-card">
+          <p>新井鯖ではエンドシティを探さなくてもシュルカーボックスを入手できます。まず<strong>エンダーシェル</strong>を作り、それでチェストか樽を囲みます。</p>
+          <table class="wiki-table">
+            <thead><tr><th>アイテム</th><th>レシピ</th><th>個数</th></tr></thead>
+            <tbody>
+              <tr><td>エンダーシェル（<code>asa3:ender_shell</code>）</td><td>オウムガイの殻8個でエンダーアイ1個を囲む</td><td>4</td></tr>
+              <tr><td>シュルカーボックス</td><td>エンダーシェル4個でチェストを十字に囲む</td><td>1</td></tr>
+              <tr><td>シュルカーボックス</td><td>エンダーシェル4個で樽を十字に囲む</td><td>1</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="wiki-subsection-title">入手しにくいアイテムのクラフト</h3>
+        <table class="wiki-table">
+          <thead><tr><th>アイテム</th><th>レシピ</th><th>個数</th></tr></thead>
+          <tbody>
+            <tr><td>ネザースター</td><td>ネザライトインゴット4個でネザライトブロック1個を十字に囲む</td><td>1</td></tr>
+            <tr><td>エンチャントされた金のリンゴ</td><td>圧縮された金ブロック4個 + ダイヤモンドブロック4個 + リンゴ1個</td><td>1</td></tr>
+            <tr><td>馬鎧（鉄・金・ダイヤ・銅）</td><td>各素材6個 + サドル1個</td><td>1</td></tr>
+            <tr><td>パワードレール</td><td>銅インゴット6個 + 棒1個 + レッドストーン1個</td><td>6</td></tr>
+            <tr><td>砂利</td><td>火打石4個</td><td>1</td></tr>
+            <tr><td>ブラックストーン</td><td>玄武岩2個 + 石炭（または木炭）2個</td><td>4</td></tr>
+            <tr><td>磨かれたブラックストーン</td><td>磨かれた玄武岩2個 + 石炭（または木炭）2個</td><td>4</td></tr>
+            <tr><td>黒色の染料</td><td>石炭または木炭1個</td><td>1</td></tr>
+            <tr><td>サンゴブロック（生・枯サンゴ全5種）</td><td>同じ種類のサンゴまたはサンゴ扇を4個（2×2）か9個（3×3）</td><td>1</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="wiki-subsection-title">染色と脱色</h3>
+        <div class="wiki-card">
+          <p>色付きブロック<strong>8個</strong>で染料<strong>1個</strong>を囲むと、色を<strong>塗り替える</strong>ことができます。すでに染まっているブロックにも使えるので、間違えて染めてしまっても作り直す必要がありません。</p>
+          <p><strong>対象：</strong>コンクリートパウダー、ガラス、板ガラス、テラコッタ</p>
+          <p>染料の代わりに<strong>氷</strong>を使うと色を抜くことができ、無色のガラス・板ガラス・テラコッタに戻せます。</p>
+        </div>
+
+        <h3 class="wiki-subsection-title">赤い砂・赤い砂岩</h3>
+        <table class="wiki-table">
+          <thead><tr><th>アイテム</th><th>レシピ</th><th>個数</th></tr></thead>
+          <tbody>
+            <tr><td>赤い砂</td><td>砂8個 + 赤の染料1個</td><td>8</td></tr>
+            <tr><td>赤い砂岩</td><td>砂岩2個 + 赤の染料1個</td><td>2</td></tr>
+            <tr><td>滑らかな赤い砂岩</td><td>滑らかな砂岩2個 + 赤の染料1個</td><td>2</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="wiki-subsection-title">ブロックの解体</h3>
+        <table class="wiki-table">
+          <thead><tr><th>入力</th><th>出力</th></tr></thead>
+          <tbody>
+            <tr><td>氷塊</td><td>氷 9個</td></tr>
+            <tr><td>青氷</td><td>氷塊 9個</td></tr>
+            <tr><td>ネザーウォートブロック</td><td>ネザーウォート 9個</td></tr>
+            <tr><td>マグマブロック</td><td>マグマクリーム 4個</td></tr>
+            <tr><td>羊毛（全色）</td><td>糸 4個</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="wiki-subsection-title">圧縮ブロック</h3>
+        <div class="wiki-card">
+          <p>同じブロックを<strong>9個</strong>作業台に敷き詰めると<strong>圧縮ブロック</strong>になります。圧縮ブロック1個を作業台に置けば、そのまま元の9個に戻せます。</p>
+          <p>大量の資材を運ぶときや、チェストの容量を節約したいときに便利です。</p>
+        </div>
+        <table class="wiki-table">
+          <thead><tr><th>分類</th><th>圧縮できるブロック</th></tr></thead>
+          <tbody>
+            <tr><td>鉱石ブロック</td><td>石炭ブロック / 鉄ブロック / 金ブロック / ダイヤモンドブロック / ネザライトブロック / ラピスラズリブロック / レッドストーンブロック / 銅ブロック</td></tr>
+            <tr><td>石材</td><td>石 / 丸石 / 深層岩の丸石</td></tr>
+            <tr><td>自然ブロック</td><td>土 / 砂 / 干草の俵</td></tr>
+            <tr><td>その他</td><td>オークの板材 / 白い羊毛 / 火薬 / 小麦の種 / 腐った肉</td></tr>
+          </tbody>
+        </table>
       </section>
 
       <!-- ── 第三期: Core Protect ── -->
@@ -1867,8 +2052,7 @@
           <p>新井鯖では区画を保護するという意味で名前をお借りしました。</p>
         </div>
       </section>
-
-      <!-- ── 第三期: オスミウムシステム ── -->
+    </main>
   </div>
 
   <footer>
